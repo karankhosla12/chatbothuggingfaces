@@ -59,7 +59,7 @@
     <script>
         async function query(data) {
             const response = await fetch(
-                "https://api-inference.huggingface.co/models/google-bert/bert-large-uncased-whole-word-masking-finetuned-squad",
+                "https://api-inference.huggingface.co/models/mrm8488/distilroberta-finetuned-financial-news-sentiment-analysis",
                 {
                     headers: {
                         Authorization: "Bearer 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",
@@ -81,12 +81,7 @@
 
             try {
                 const response = await query({
-                    inputs: {
-                        question: input,
-                        context: await fetch("https://datasets-server.huggingface.co/rows?dataset=infinite-dataset-hub%2FFoodReviewSentiment&config=default&split=train&offset=0&length=100")
-                            .then(res => res.json())
-                            .then(data => JSON.stringify(data))
-                    }
+                    inputs: input
                 });
                 responseDiv.textContent = JSON.stringify(response);
             } catch (error) {
