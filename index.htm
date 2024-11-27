@@ -59,7 +59,7 @@
     <script>
         async function query(data) {
             const response = await fetch(
-                "https://api-inference.huggingface.co/models/meta-llama/Llama-3.2-1B",
+                "https://api-inference.huggingface.co/models/google-bert/bert-large-uncased-whole-word-masking-finetuned-squad",
                 {
                     headers: {
                         Authorization: "Bearer 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",
@@ -80,7 +80,12 @@
             responseDiv.textContent = "Processing...";
 
             try {
-                const response = await query({ inputs: input });
+                const response = await query({
+                    inputs: {
+                        question: input,
+                        context: "My name is Clara and I live in Berkeley."
+                    }
+                });
                 responseDiv.textContent = JSON.stringify(response);
             } catch (error) {
                 responseDiv.textContent = "An error occurred. Please try again.";
