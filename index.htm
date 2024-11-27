@@ -82,8 +82,7 @@
             try {
                 const response = await query({
                     inputs: {
-                        question: input,
-                        context: "My name is Clara and I live in Berkeley."
+                        question: input
                     }
                 });
                 responseDiv.textContent = JSON.stringify(response);
