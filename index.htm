@@ -51,8 +51,8 @@
     </style>
 </head>
 <body>
-    <h1>Karan's Bot</h1>
-    <input type="text" id="userInput" placeholder="Enter your query here" />
+    <h1>Karan's review bot Bot</h1>
+    <input type="text" id="userInput" placeholder="Enter your review here" />
     <button onclick="sendQuery()">Submit</button>
     <div id="response"></div>
 
@@ -83,7 +83,16 @@
                 const response = await query({
                     inputs: input
                 });
-                responseDiv.textContent = JSON.stringify(response);
+
+                const sentimentScores = response[0];
+                const negativeScore = sentimentScores.find(s => s.label === "negative").score;
+                const positiveScore = sentimentScores.find(s => s.label === "positive").score;
+
+                if (negativeScore > positiveScore) {
+                    responseDiv.textContent = "Sentiment: Negative";
+                } else {
+                    responseDiv.textContent = "Sentiment: Positive";
+                }
             } catch (error) {
                 responseDiv.textContent = "An error occurred. Please try again.";
                 console.error(error);
