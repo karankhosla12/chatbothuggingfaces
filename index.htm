@@ -83,7 +83,7 @@
                 const response = await query({
                     inputs: {
                         question: input,
-                        context: await fetch("https://datasets-server.huggingface.co/rows?dataset=HuggingFaceTB%2Fsmoltalk&config=all&split=train&offset=0&length=100")
+                        context: await fetch("https://datasets-server.huggingface.co/rows?dataset=infinite-dataset-hub%2FFoodReviewSentiment&config=default&split=train&offset=0&length=100")
                             .then(res => res.json())
                             .then(data => JSON.stringify(data))
                     }
